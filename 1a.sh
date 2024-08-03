@@ -11,7 +11,7 @@ if [ "$num" == "$reverse" ]; then
 else
     echo "$num is not a palindrome."
 fi
-
+#2nd method
 : <<'END_COMMENT'
 echo "read number"
 read num
