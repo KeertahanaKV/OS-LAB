@@ -6,12 +6,17 @@ read m
 echo "Enter the number of columns:"
 read n
 
+# Initialize matrices
+declare -a x
+declare -a y
+
 # Read matrix X
 echo "Enter the elements of matrix X:"
 for ((i=0; i<m; i++)); do
     for ((j=0; j<n; j++)); do
+        index=$((i * n + j))
         echo -n "Enter element X[$i,$j]: "
-        read x[$i,$j]
+        read x[$index]
     done
 done
 
@@ -19,25 +24,28 @@ done
 echo "Enter the elements of matrix Y:"
 for ((i=0; i<m; i++)); do
     for ((j=0; j<n; j++)); do
+        index=$((i * n + j))
         echo -n "Enter element Y[$i,$j]: "
-        read y[$i,$j]
+        read y[$index]
     done
 done
 
 # Display matrix X
-echo "Matrix X:"
+echo "Input matrix X:"
 for ((i=0; i<m; i++)); do
     for ((j=0; j<n; j++)); do
-        echo -n "${x[$i,$j]} "
+        index=$((i * n + j))
+        echo -n "${x[$index]} "
     done
     echo
 done
 
 # Display matrix Y
-echo "Matrix Y:"
+echo "Input matrix Y:"
 for ((i=0; i<m; i++)); do
     for ((j=0; j<n; j++)); do
-        echo -n "${y[$i,$j]} "
+        index=$((i * n + j))
+        echo -n "${y[$index]} "
     done
     echo
 done
@@ -46,7 +54,8 @@ done
 echo "Matrix Sum (X + Y):"
 for ((i=0; i<m; i++)); do
     for ((j=0; j<n; j++)); do
-        sum=$((x[$i,$j] + y[$i,$j]))
+        index=$((i * n + j))
+        sum=$((x[$index] + y[$index]))
         echo -n "${sum} "
     done
     echo
