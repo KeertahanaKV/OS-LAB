@@ -38,3 +38,6 @@ printf("Inside main thread\n");
 printf("sum=%d\n",sm);
 printf("product=%d\n",prod);
 }
+//pthread_join(T1, NULL); and pthread_join(T2, NULL);
+
+//These calls make the main thread wait until T1 and T2 have finished executing. This ensures that the main thread doesn't proceed to the printf statements until both threads have completed
