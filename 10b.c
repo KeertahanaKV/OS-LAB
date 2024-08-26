@@ -207,4 +207,48 @@ ptr+=strlen(ptr);
 
  } 
 
-  }
+//child process
+#include <sys/types.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/shm.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <stdlib.h>
+
+int checkPrime(int M)
+{
+    int flag = 1;
+    for (int i = 2; i <= M / 2; i++) {
+        if (M % i == 0) {
+            flag = 0;
+            break;
+        }
+    }
+    return flag == 1 ? M : 0;
+}
+
+int main(int argc, char *argv[])
+{
+    
+    int k,p;
+    k=atoi(argv[1]);
+    void *ptr;
+    int shm_fd = shm_open("HK", O_CREAT | O_RDWR, 0666);
+    ftruncate(shm_fd, 4096);
+    ptr = mmap(0, 4096, PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    printf("CHILD:\n");
+    int i = atoi(argv[2]);
+
+    while (k != i)
+    {
+        p = checkPrime(k++);
+        if (p != 0) {
+            sprintf(ptr, "%d ", p);
+            printf("%d ", p);
+            ptr += strlen(ptr);
+        }
+    }
+    return 0;
+}
