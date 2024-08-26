@@ -1,7 +1,7 @@
-include <pthread.h>
-#include <semaphore.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include<pthread.h>
+#include<semaphore.h>
+#include<stdlib.h>
+#include<stdio.h>
 #define MaxItems 3 // Maximum items a producer can produce or a consumer can consume
 #define BufferSize 3 // Size of the buffer
 
