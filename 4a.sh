@@ -1,62 +1,61 @@
 #!/bin/bash
 
-# Read number of rows and columns
-echo "Enter the number of rows:"
+echo "Enter the dimensions for a matrix"
+echo -n "Rows: "
 read m
-echo "Enter the number of columns:"
+echo -n "Columns: "
 read n
 
-# Initialize matrices
-declare -a x
-declare -a y
+declare -A x
+declare -A y
+declare -A z
 
-# Read matrix X
-echo "Enter the elements of matrix X:"
-for ((i=0; i<m; i++)); do
-    for ((j=0; j<n; j++)); do
-        index=$((i * n + j))
-        echo -n "Enter element X[$i,$j]: "
-        read x[$index]
-    done
+echo "Enter the elements of the 1st $m x $n matrix:"
+for ((i=0; i<m; i++))
+do
+	for ((j=0; j<n; j++))
+	do
+		read x[$i,$j]
+	done
 done
 
-# Read matrix Y
-echo "Enter the elements of matrix Y:"
-for ((i=0; i<m; i++)); do
-    for ((j=0; j<n; j++)); do
-        index=$((i * n + j))
-        echo -n "Enter element Y[$i,$j]: "
-        read y[$index]
-    done
+echo "Enter the elements of the 2nd $m x $n matrix:"
+for ((i=0; i<m; i++))
+do
+	for ((j=0; j<n; j++))
+	do
+		read y[$i,$j]
+	done
 done
 
-# Display matrix X
-echo "Input matrix X:"
-for ((i=0; i<m; i++)); do
-    for ((j=0; j<n; j++)); do
-        index=$((i * n + j))
-        echo -n "${x[$index]} "
-    done
-    echo
+echo "Input matrices are:"
+echo "First matrix:"
+for ((i=0; i<m; i++))
+do
+	for ((j=0; j<n; j++))
+	do
+		echo -ne "${x[$i,$j]}  "
+	done
+	echo
 done
 
-# Display matrix Y
-echo "Input matrix Y:"
-for ((i=0; i<m; i++)); do
-    for ((j=0; j<n; j++)); do
-        index=$((i * n + j))
-        echo -n "${y[$index]} "
-    done
-    echo
+echo "Second matrix:"
+for ((i=0; i<m; i++))
+do
+	for ((j=0; j<n; j++))
+	do
+		echo -ne "${y[$i,$j]}  "
+	done
+	echo
 done
 
-# Calculate and display matrix sum
-echo "Matrix Sum (X + Y):"
-for ((i=0; i<m; i++)); do
-    for ((j=0; j<n; j++)); do
-        index=$((i * n + j))
-        sum=$((x[$index] + y[$index]))
-        echo -n "${sum} "
-    done
-    echo
+echo "The resultant matrix after performing addition:"
+for ((i=0; i<m; i++))
+do
+	for ((j=0; j<n; j++))
+	do
+		z[$i,$j]=$((x[$i,$j] + y[$i,$j]))
+		echo -ne "${z[$i,$j]}  "
+	done
+	echo
 done
